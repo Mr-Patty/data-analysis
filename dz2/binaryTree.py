@@ -54,15 +54,13 @@ class BinarySearchTree:
         if self.root is None:
             return
         dq = deque(self.root)
-        res = []
         while dq:
             a = dq.popleft()
-            res.append(a.getValue())
+            yield a.getValue()
             if a.left:
                 dq.append(a.left)
             if a.right:
                 dq.append(a.right)
-        yield from (i for i in res)
 
     def __contains__(self, item):
         if self.root is None:
@@ -90,6 +88,3 @@ if __name__ == '__main__':
         print(v in tree)
 
     print(*tree)
-
-    for i in tree:
-        print(i)
